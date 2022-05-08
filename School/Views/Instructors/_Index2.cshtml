@@ -1,0 +1,34 @@
+﻿@model IEnumerable<School.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "_Index2";
+}
+
+
+@if( Model != null)
+{
+    <h3>Students Enrolled in Selected Course</h3>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>
+                    @item.Student.FullName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+    
+}

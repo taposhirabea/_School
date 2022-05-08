@@ -1,0 +1,64 @@
+﻿/*namespace School.wwwroot.css
+{
+    public class sideNav
+    {
+    }
+}*/
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        left: 225px;
+        width: 225px;
+        margin-left: -237px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #222;
+        height: 100%;
+        padding-left: 10px;
+    }
+
+        .side-nav li a {
+            width: 225px;
+        }
+
+            .side-nav li a:hover,
+            .side-nav li a:focus,
+            .side-nav li.active a {
+                outline: none;
+                background-color: #000 !important;
+            }
+}
+
+.side-nav ul {
+    padding: 0;
+}
+
+.side-nav a {
+    display: block;
+    padding: 10px 15px 15px 18px;
+    text-decoration: none;
+    color: #999;
+}
+
+    .side-nav a:hover {
+        color: #fff;
+    }
+
+
+
+/*.side-nav > li > ul > li > a {
+        display: block;
+        padding: 10px 15px 10px 38px;
+        text-decoration: none;
+        color: #999;
+    }
+
+.side-nav > li > ul > li > a:hover {
+            color: #fff;
+        }
+*/

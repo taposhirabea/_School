@@ -1,0 +1,47 @@
+﻿@model IEnumerable<School.Models.Course>
+
+@{
+    ViewData["Title"] = "_Index1";
+}
+
+@if( Model != null)
+{
+    <h1>Courses Taught by Selected Instructor</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string selectedRow = "";
+            if (item.CourseID == (int?)ViewData["CourseID"])
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @*<a asp-action="Index" asp-route-id="@item.CourseID">Select</a>*@
+                    @Html.ActionLink("Select", "_Index2", new { courseID = item.CourseID }, new {ajax_target="#index2", eval = "selectedColor($this, $ajaxTarget, data)"})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+<div id="index2"></div>

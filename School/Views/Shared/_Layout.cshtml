@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - School</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/School.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sideNav.css"  />
+    <script src="https://kit.fontawesome.com/3dc5fff7a5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    @*<header>
+       
+    </header>*@
+    @*<div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>*@
+    @*<div id="wrapper" ng-cloak>
+
+        @{ await Html.RenderPartialAsync("_Navigation");}
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div id="toufiqElahy">@RenderBody()</div>
+            </div>
+        </div>
+    </div>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <div id="wrapper" ng-cloak>
+
+        @{ await Html.RenderPartialAsync("_Navigation");}
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div id="toufiqElahy">@RenderBody()</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Modal -->
+    <div id="globalModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content" id="globalModalContent">
+                .
+                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>*@
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - School - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <link rel="stylesheet" href="~/SPA/toufiqElahySPA.css" />
+    <script src="~/SPA/toufiqElahySPA.js"></script>
+
+    <script>
+        $(function(){
+            $("#toufiqElahy").toufiqSPA();
+        })
+    </script>
+
+</body>
+</html>

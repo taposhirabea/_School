@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br /> <br /> <br />
+<a href="/Courses/Index" class="stopAjax" ajax-target="#bodyContent" data-target="#localModal">Course #bodyContent</a>
+<button href="/Courses/Index" ajax-target="element" onclick="alrt()" eval="init($this, $ajaxTarget, data, JqrXHR)">Course element</button>
+<input href="/Courses/Create" ajax-target="#idSelector" value="Create Course #idSelector" type="button" />
+
+<br />
+Section 1(div#idSelector or #idSelector)
+<div id="idSelector"></div>
+...............................................................................................................
+<br />
+Section 2(.cls or div.cls)
+<div class="cls"></div>
+...............................................................................................................
+<br />
+Section 3(element or element:first or element:eq(0))
+<element></element><br />
+...............................................................................................................
+<br />
+Section 4(.cls or div.cls or [attr='attribute'])
+<div class="cls" attr="attribute"></div>
+...............................................................................................................
+<br />
+Section 5(element or element#idSelector or element:eq(1))
+<element id="idSelector"></element><br />
+...............................................................................................................
+
+<script>//rule (2)
+    function add($this, $ajaxTarget, data, JqrXHR) {
+        console.log(JqrXHR);
+        $ajaxTarget.html(data);
+        $this.closest('div').hide();
+        $('#bodyContent').html(data);
+        $('#localModal').modal('show');
+    }
+    function init($this, $ajaxTarget, data, JqrXHR) {
+        $ajaxTarget.html('hello world!');
+        $this.hide();
+        $('#bodyContent').html(data);
+        $('#localModal').modal('show');
+    }
+
+</script>
+
+<!-- Local Modal -->
+<div id="localModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content" id="localModalContent">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="bodyContent">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>//rule (3)
+    function confirmation(event) {
+        if (confirm('do you want to submit') == false) {
+            event.stopPropagation();//it will prevent the further event bindings
+            event.preventDefault();//and it will prevent using this plugin's ajax method
+        }
+    }
+
+    function alrt() {
+        alert('click ok to proceed!');
+    }
+</script>

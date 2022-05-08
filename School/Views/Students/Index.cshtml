@@ -1,0 +1,85 @@
+﻿@model PaginatedList<School.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a  ajax-target="#studentOperation" asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find my name: <input type="search" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Index">Back to list</a>
+        </p>
+    </div>
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]", asp-route-cusrrentFilter="@ViewData["CurrentFilter"]">LastName</a>
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]", asp-route-cusrrentFilter="@ViewData["CurrentFilter"]">Enrollment Date</a>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="appendTable">
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                <a ajax-target="#studentOperation" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a ajax-target="#studentOperation" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a ajax-target="#studentOperation" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-pageNumber="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @prevDisabled">Previous</a>
+
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-pageNumber="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @nextDisabled">Next</a>
+
+<div id="studentOperation"></div>
+
+<script>
+    $(function () {
+        $('#appendTable').on('click', 'a[ajax-target="#studentOperation"]', function () {
+            $this = $(this);
+            $this.closest('tbody').find('tr').removeClass('active');
+            $this.closest('tr').addClass('active');
+        })
+    })
+</script>
